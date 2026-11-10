@@ -13,7 +13,7 @@ public class Ejercicio7_3 {
     public static void main(String[] args) {
 
         WebDriver driver = new ChromeDriver();
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
         try {
             driver.get("https://www.selenium.dev/selenium/web/web-form.html");
 
@@ -26,21 +26,15 @@ public class Ejercicio7_3 {
 
             texto.sendKeys("Prueba ADSO");
 
-            driver.findElement(By.name("my-password"))
-                    .sendKeys("Sena2026");
+            driver.findElement(By.name("my-password")).sendKeys("Sena2026");
 
-            driver.findElement(By.name("my-textarea"))
-                    .sendKeys("Automatización con Selenium");
+            driver.findElement(By.name("my-textarea")).sendKeys("Automatización con Selenium");
 
 
             WebElement boton = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("button[type='submit']")));
-
             boton.click();
-
             By cuerpo = By.tagName("body");
-
             wait.until(ExpectedConditions.textToBePresentInElementLocated(cuerpo, "Received!"));
-
             String resultado = driver.findElement(cuerpo).getText();
 
             System.out.println("Resultado obtenido: " + resultado);

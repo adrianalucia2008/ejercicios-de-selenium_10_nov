@@ -13,62 +13,39 @@ public class Ejercicio7_2 {
 
         try {
 
-            WebDriverWait wait = new WebDriverWait(
-                    driver, Duration.ofSeconds(15)
-            );
+            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
 
             driver.get("https://demoqa.com/radio-button");
             driver.manage().window().maximize();
 
-            wait.until(ExpectedConditions.visibilityOfElementLocated(
-                    By.cssSelector("label[for='yesRadio']")
-            ));
+            wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("label[for='yesRadio']")));
 
-            wait.until(ExpectedConditions.visibilityOfElementLocated(
-                    By.cssSelector("label[for='impressiveRadio']")
-            ));
+            wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("label[for='impressiveRadio']")));
 
-            wait.until(ExpectedConditions.visibilityOfElementLocated(
-                    By.cssSelector("label[for='noRadio']")
-            ));
+            wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("label[for='noRadio']")));
 
 
-            WebElement impressive = wait.until(
-                    ExpectedConditions.elementToBeClickable(
-                            By.cssSelector("label[for='impressiveRadio']")
-                    )
-            );
+            WebElement impressive = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("label[for='impressiveRadio']")));
 
             impressive.click();
 
 
-            WebElement radio = driver.findElement(
-                    By.id("impressiveRadio")
-            );
+            WebElement radio = driver.findElement(By.id("impressiveRadio"));
 
 
-            WebElement mensaje = wait.until(
-                    ExpectedConditions.visibilityOfElementLocated(
-                            By.cssSelector(".text-success")
-                    )
-            );
+            WebElement mensaje = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".text-success")));
 
             String resultado = mensaje.getText();
 
             System.out.println("Mensaje obtenido: " + resultado);
 
-            if (radio.isSelected() &&
-                    resultado.contains("Impressive")) {
+            if (radio.isSelected() && resultado.contains("Impressive")) {
 
-                System.out.println(
-                        "PRUEBA EXITOSA:Fue seleccionado correctamente."
-                );
+                System.out.println("PRUEBA EXITOSA:Fue seleccionado correctamente.");
 
             } else {
 
-                System.out.println(
-                        "PRUEBA FALLIDA: No se confirmó la selección."
-                );
+                System.out.println("PRUEBA FALLIDA: No se confirmó la selección.");
             }
 
         } finally {
